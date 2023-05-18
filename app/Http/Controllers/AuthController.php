@@ -34,4 +34,31 @@ class AuthController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function loginForm() 
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request) {
+
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->route('home');
+        } 
+
+        return redirect()->back()->with('error', 'Неправильный Email или пароль');
+
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        
+        return redirect()->route('home');
+    }
 }

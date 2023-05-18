@@ -20,5 +20,6 @@ Route::get('/', [SiteController::class, 'index'])->name('home');
 
 Route::get('/register', [AuthController::class, 'create'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('create');
-Route::get('/login', [AuthController::class, 'loginForm'])->name('login_form');
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
