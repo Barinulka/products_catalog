@@ -16,11 +16,12 @@ class SiteController extends Controller
     {
         $title = 'Home Page Title';
 
-        $categories = Category::selectRaw('r.good_id, count(r.id) as count, categories.id, categories.url, categories.name')
-            ->join('reviews as r', 'r.good_id', '=', 'categories.id')
-            ->groupBy('good_id')
+        $categories = Category::selectRaw('count(r.id) as count, categories.id, categories.url, categories.name')
+            ->join('goods as g', 'g.category_id', '=', 'categories.id')
+            ->join('reviews as r', 'r.good_id', '=', 'g.id')
+            ->groupBy('categories.id')
             ->orderBy('count', 'desc')
-            ->having('count', '>', 1)
+            ->havingRaw('count > 3')
             ->get();
 
 
