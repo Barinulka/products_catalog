@@ -49,6 +49,15 @@ RewriteEngine On
 RewriteRule (.*) public/$1
 ``` 
 
+11. Запустить vite
+```
+npm run dev
+```
+или сгенерировать (js/csss) файлы
+```
+npm run dev
+```
+
 11. Запустить сервер
 ```
 php artisan serve
