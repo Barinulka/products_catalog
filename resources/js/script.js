@@ -14,6 +14,12 @@ $(function()
        
         var action = btn.attr('href');
 
+        var link = _CATALOG_URL;
+
+        if (btn.attr('data-update').length) {
+            var link = btn.attr('data-update');
+        }
+
         $.ajax({
             type: 'POST',
             url: action,
@@ -26,7 +32,7 @@ $(function()
             //     alert('Что-то пошло не так')
             // }
             success: function(response) {
-                updateData(_CATALOG_URL, 'catalog')
+                updateData(link, 'catalog')
                 $('#count-favorite').html(response.count);
             },
             error: function(response) {

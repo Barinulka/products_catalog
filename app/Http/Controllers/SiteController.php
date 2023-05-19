@@ -36,6 +36,10 @@ class SiteController extends Controller
         $category = Category::with('goods')->where('url', $url)->firstOrFail();
         $goods = $category->goods;
 
+        if (app()->request->ajax()) {
+            return view('item', compact('goods', 'category'));
+        }
+
         return view('category', compact('title', 'category', 'goods'));
     }
 }
