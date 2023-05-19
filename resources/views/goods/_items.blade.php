@@ -19,9 +19,9 @@
                 </div>
                 @auth
                 @if ($good->hasFavorite())
-                    <a href="{{ route('favorite.remove', ['good' => $good]) }}" class="add-to-favorite"><i class="bi bi-heart-fill"></i></a>
+                    <a href="{{ route('favorite.remove', ['good' => $good]) }}" data-update="" class="add-to-favorite"><i class="bi bi-heart-fill"></i></a>
                 @else
-                    <a href="{{ route('favorite.add', ['good' => $good]) }}" class="add-to-favorite"><i class="bi bi-heart"></i></a>
+                    <a href="{{ route('favorite.add', ['good' => $good]) }}" data-update="" class="add-to-favorite"><i class="bi bi-heart"></i></a>
                 @endif
                 @endauth
             </div>
