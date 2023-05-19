@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SiteController::class, 'index'])->name('home');
 Route::get('/category/{url}', [SiteController::class, 'show'])->name('category.view');
+Route::get('/search', [SiteController::class, 'search'])->name('search');
 
 Route::get('/catalog', [GoodController::class, 'index'])->name('catalog.index');
 Route::get('/catalog/{url}', [GoodController::class, 'show'])->name('catalog.view');

@@ -35,4 +35,9 @@ class Category extends Model
             ->generateSlugsFrom('name') // Откуда берём имя урла
             ->saveSlugsTo('url'); // в какое поле записываем
     }
+
+    public function scopeLike($query, $search)
+    {
+        return $query->where('name', 'LIKE', "%{$search}%");
+    }
 }

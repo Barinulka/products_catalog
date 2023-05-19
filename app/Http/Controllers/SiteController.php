@@ -16,9 +16,6 @@ class SiteController extends Controller
     {
         $title = 'Home Page Title';
 
-
-        // $reviews = Category::selectRaw('r.good_id, count(r.id) as count')->join('reviews as r', 'r.good_id', '=', 'categories.id')->groupBy('good_id')->having('count', '>', 1)->get();
-        // $cats = DB::table('categories as cat')->selectRaw('r.good_id, count(r.id) as count, cat.id')->join('reviews as r', 'r.good_id', '=', 'cat.id')->groupBy('good_id')->having('count', '>', 1)->get();
         $categories = Category::selectRaw('r.good_id, count(r.id) as count, categories.id, categories.url, categories.name')
             ->join('reviews as r', 'r.good_id', '=', 'categories.id')
             ->groupBy('good_id')
@@ -42,4 +39,25 @@ class SiteController extends Controller
 
         return view('category', compact('title', 'category', 'goods'));
     }
+
+    public function search(Request $request) 
+    {
+        $title = 'Результаты поиска';
+        $results = [];
+
+        $request->validate([
+            'search' => 'required',
+        ]);
+
+        $search = $request->search;
+
+        $categories = Category::selectRaw('id, name, url, "category" AS type')->like($search)->where('is_published', 1);
+        
+
+        $results = Good::selectRaw('id, name, url, "catalog" AS type')->like($search)->where('is_published', 1)->union($categories)->inRandomOrder()->paginate(10);
+
+        return view('search', compact('title', 'results'));
+    }
+
+    
 }

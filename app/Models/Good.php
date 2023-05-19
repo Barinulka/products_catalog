@@ -64,4 +64,9 @@ class Good extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function scopeLike($query, $search)
+    {
+        return $query->where('name', 'LIKE', "%{$search}%");
+    }
+
 }

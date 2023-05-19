@@ -15,8 +15,14 @@
                 </li>
             </ul>
 
+            <form class="d-flex" method="GET" action="{{ route('search') }}">
+                <input name="search" class="form-control me-2 @error('search') is-invalid @enderror" id="search" type="text" placeholder="Search" required aria-label="Search">
+                <button class="btn btn-dark" type="submit">Search</button>
+            </form>
+
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
+                
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
