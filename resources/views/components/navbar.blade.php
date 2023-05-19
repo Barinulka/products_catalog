@@ -36,7 +36,7 @@
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             @if (auth()->user()->is_admin)
-                                <a class="dropdown-item" href="{{ route('admin') }}">{{ __('Админка') }}</a>
+                                <a class="dropdown-item" href="{{ route('admin.index') }}">{{ __('Админка') }}</a>
                             @endif
                             
                             <a class="dropdown-item" href="{{ route('logout') }}"

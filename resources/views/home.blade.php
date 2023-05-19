@@ -5,7 +5,7 @@
 @endsection
     
 @section('content')
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+<div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-3">
     {{-- @forelse ($taskList as $task) --}}
         <div class="col">
             <div class="card shadow-sm">
@@ -15,15 +15,14 @@
                 <h4>Тут какой-то тайтл</h4>
                 <p class="card-text">Это более широкая карточка с вспомогательным текстом ниже как естественный ввод к дополнительному контенту. Этот контент немного длиннее.</p>
                 <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Смотреть</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button>
-                </div>
-                <small class="text-muted">9 mins</small>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Смотреть</button>
+                    </div>
                 </div>
             </div>
             </div>
         </div>
+        
     {{-- @empty --}}
         {{-- <h2>Задач пока нет</h2> --}}
     {{-- @endforelse --}}

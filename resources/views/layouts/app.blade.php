@@ -18,11 +18,10 @@
 </head>
     <body>
         <div id="app">
-            @include('layouts.navbar')
+            <x-navbar></x-navbar>
 
             <main class="album py-5 bg-light">
                 <div class="container">
-                    @include('layouts.alerts')
                     @yield('content')
                 </div>
             </main>
