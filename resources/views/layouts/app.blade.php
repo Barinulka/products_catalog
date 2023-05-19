@@ -15,6 +15,11 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <script type="text/javascript">
+        const _URL = '{{ route('home') }}';
+        const _CATALOG_URL = '{{ route('catalog.index') }}';
+    </script>
 </head>
     <body>
         <div id="app">

@@ -14,9 +14,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link @if(request()->routeIs('goods.index')) active @endif" href="{{ route('goods.index') }}">
                     <span data-feather="shopping-cart"></span>
-                    Products
+                    Товары
                 </a>
             </li>
             <li class="nav-item">

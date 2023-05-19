@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\GoodController as AdminGoodController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\GoodController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SiteController::class, 'index'])->name('home');
 
+Route::get('/catalog', [GoodController::class, 'index'])->name('catalog.index');
+Route::get('/catalog/{url}', [GoodController::class, 'show'])->name('catalog.view');
 
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/register', [AuthController::class, 'create'])->name('register');
@@ -31,13 +37,18 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middle
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::resource('categories', CategoryController::class);
-    // Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories');
-    // Route::get('/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
-    // Route::post('/categories/save', [CategoryController::class, 'store'])->name('admin.categories.save');
-    // Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->where('id', '\d+')->name('admin.categories.edit');
-    // Route::post('/categories/update/{id}', [CategoryController::class, 'update'])->where('id', '\d+')->name('admin.categories.update');
-    // Route::post('/categories/delete/{id}', [CategoryController::class, 'delete'])->where('id', '\d+')->name('admin.categories.delete');
+    Route::resource('/categories', AdminCategoryController::class);
+    Route::resource('/goods', AdminGoodController::class);
 });
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/favorite', [FavoriteController::class, 'index'])->name('favorite.index');
+    Route::post('/favorite/add/{good}', [FavoriteController::class, 'add'])->name('favorite.add');
+    Route::post('/favorite/remove/{good}', [FavoriteController::class, 'remove'])->name('favorite.remove');
+});
+
+Route::post('review/create', [ReviewController::class, 'store'])->name('review.store');
+
+
 
 
