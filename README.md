@@ -55,7 +55,7 @@ npm run dev
 ```
 или сгенерировать (js/csss) файлы
 ```
-npm run dev
+npm run build
 ```
 
 11. Запустить сервер
