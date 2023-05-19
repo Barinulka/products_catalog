@@ -53,7 +53,7 @@ RewriteRule (.*) public/$1
 ```
 npm run dev
 ```
-или сгенерировать (js/csss) файлы
+или сгенерировать (js/css) файлы
 ```
 npm run build
 ```
