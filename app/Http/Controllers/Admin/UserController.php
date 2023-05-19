@@ -47,7 +47,7 @@ class UserController extends Controller
      
     public function destroy(int $id)
     {
-        Good::destroy($id);
-        return redirect()->route('users.index')->with('success', 'Товар успешно удален');
+        User::destroy($id);
+        return redirect()->route('users.index')->with('success', 'Пользователь удален');
     }
 }
