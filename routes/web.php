@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\GoodController as AdminGoodController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\GoodController;
@@ -41,6 +41,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('/categories', AdminCategoryController::class);
     Route::resource('/goods', AdminGoodController::class);
+    Route::resource('/users', AdminUserController::class);
 });
 
 Route::group(['middleware' => 'auth'], function() {
