@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\GoodController as AdminGoodController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FavoriteController;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [SiteController::class, 'index'])->name('home');
+Route::get('/category/{url}', [SiteController::class, 'show'])->name('category.view');
 
 Route::get('/catalog', [GoodController::class, 'index'])->name('catalog.index');
 Route::get('/catalog/{url}', [GoodController::class, 'show'])->name('catalog.view');

@@ -12,7 +12,7 @@ class GoodController extends Controller
     {
         $title = 'Каталог товаров';
 
-        $goods = Good::paginate(10);
+        $goods = Good::where('is_published', 1)->paginate(10);
 
         if (app()->request->ajax()) {
             return view('goods._items', compact('goods'));
@@ -23,7 +23,7 @@ class GoodController extends Controller
 
     public function show(string $url) 
     {
-        $good = Good::with('reviews')->where('url', $url)->firstOrFail();
+        $good = Good::with('reviews')->where('url', $url)->where('is_published', 1)->firstOrFail();
 
         $title = $good->name;
 

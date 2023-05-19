@@ -11,7 +11,8 @@
         <div class="card-body">
             <h4>{{ $good->name }}</h4>
             <p class="card-text">{{ $good->description }}</p>
-            <p class="card-text"><small class="text-muted">{{ $good->category->name }}</small></p>
+            
+            <a href="{{ route('category.view', ['url' => $good->category->url]) }}" class="card-text pb-7"><small class="text-muted">{{ $good->category->name }}</small></a>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <a href="{{ route('catalog.view', ['url' => $good->url]) }}" class="btn btn-sm btn-outline-secondary">Смотреть</a>
