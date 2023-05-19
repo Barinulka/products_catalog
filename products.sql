@@ -29,8 +29,9 @@ CREATE TABLE `categories` (
   `is_published` tinyint NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`),
+  KEY `categories_name_index` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +40,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'Категория 1','kategoriia-1',1,'2023-05-19 03:26:31','2023-05-19 03:26:31'),(2,'Категория 2','kategoriia-2',1,'2023-05-19 03:26:35','2023-05-19 03:26:35'),(3,'Категория 3','kategoriia-3',0,'2023-05-19 03:26:38','2023-05-19 03:26:38'),(4,'Категория 4','kategoriia-4',1,'2023-05-19 03:26:44','2023-05-19 03:26:44'),(5,'Категория 5','kategoriia-5',1,'2023-05-19 03:26:49','2023-05-19 03:26:49');
+INSERT INTO `categories` VALUES (1,'Категория 1','kategoriia-1',1,'2023-05-19 03:26:31','2023-05-19 03:26:31'),(2,'Категория 2','kategoriia-2',1,'2023-05-19 03:26:35','2023-05-19 03:26:35'),(3,'Категория 3','kategoriia-3',0,'2023-05-19 03:26:38','2023-05-19 03:26:38'),(4,'Категория 4','kategoriia-4',1,'2023-05-19 03:26:44','2023-05-19 03:26:44'),(5,'Категория 5','kategoriia-5',1,'2023-05-19 03:26:49','2023-05-19 03:26:49'),(6,'Категория 6','kategoriia-6',1,'2023-05-19 10:46:09','2023-05-19 10:46:09'),(7,'Категория товар для поиска','kategoriia-tovar-dlia-poiska',1,'2023-05-19 13:39:11','2023-05-19 13:39:11');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +87,7 @@ CREATE TABLE `favorites` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +117,8 @@ CREATE TABLE `goods` (
   `is_published` tinyint NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `goods_name_index` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,7 +144,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +153,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_reset_tokens_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_05_18_065829_alter_alter_table_users',2),(18,'2023_05_18_095629_create_goods_table',3),(19,'2023_05_18_104513_create_categories_table',3),(22,'2023_05_19_093334_create_favorites_table',4),(24,'2023_05_19_112125_create_reviews_table',5);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_reset_tokens_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_05_18_065829_alter_alter_table_users',2),(18,'2023_05_18_095629_create_goods_table',3),(19,'2023_05_18_104513_create_categories_table',3),(22,'2023_05_19_093334_create_favorites_table',4),(24,'2023_05_19_112125_create_reviews_table',5),(25,'2023_05_19_163446_alter_table_goods_add_name_index',6),(26,'2023_05_19_163456_alter_table_cateories_add_name_index',7);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,7 +271,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Admin','admin@admin.com',NULL,'$2y$10$zQoX6h2PFttnCn95aqBkkOr2mc.jfNCSrhvOMQLfA/tlLMxTgJ5zG',NULL,'2023-05-17 09:31:48','2023-05-17 09:31:48',1),(2,'Alexey','barin1601@gmail.com',NULL,'$2y$10$pLjgeelYo7/BILobmd2sZ.8FfyRqlOB6KmVl9K3C/IzoWUJxRLxFq',NULL,'2023-05-18 03:00:38','2023-05-18 03:00:38',0);
+INSERT INTO `users` VALUES (1,'Admin','admin@admin.com',NULL,'$2y$10$zQoX6h2PFttnCn95aqBkkOr2mc.jfNCSrhvOMQLfA/tlLMxTgJ5zG',NULL,'2023-05-17 09:31:48','2023-05-17 09:31:48',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -282,4 +284,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-19 18:04:52
+-- Dump completed on 2023-05-19 21:42:03
