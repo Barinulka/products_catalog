@@ -58,7 +58,13 @@ npm run dev
 npm run build
 ```
 
-11. Запустить сервер
+11. Запустить сервер (если необходимо)
 ```
 php artisan serve
+```
+
+12. Аккаунт админа
+```
+admin@admin.com
+admin
 ```
