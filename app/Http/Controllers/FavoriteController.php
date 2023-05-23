@@ -45,7 +45,7 @@ class FavoriteController extends Controller
        
         if ($request->ajax()) {
             
-            $model = Favorite::where('good_id', $good->id);
+            $model = Favorite::where('good_id', $good->id)->where('user_id', auth()->user()->id);
 
             $model->delete();
 
