@@ -27,7 +27,7 @@ class GoodController extends Controller
 
         $title = $good->name;
 
-        $reviews = Review::where('good_id', $good->id)->orderBy('id', 'desc')->paginate(3);
+        $reviews = Review::with('images')->where('good_id', $good->id)->orderBy('id', 'desc')->paginate(3);
 
         if (app()->request->ajax()) {
             return view('goods._reviews_lists', compact('reviews'));

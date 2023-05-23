@@ -3,6 +3,8 @@
 @section('title') 
     {{ $title }} 
 @endsection
+
+
     
 @section('content')
     <div class="row row-cols-12 g-3">

@@ -9,6 +9,8 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
     
+    <script src="{{ asset('assets/jquery.js') }}"></script>
+    <script src="{{ asset('assets/jquery.form.js') }}"></script>
     @vite(['resources/sass/admin.scss', 'resources/js/admin.js'])
 
     {{-- CONSTS --}}

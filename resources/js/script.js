@@ -53,28 +53,39 @@ $(function()
     
         var form = $(this);
        
-        var action = form.attr('action');
-
         var data_update = form.attr('data-update');
 
-        var formData = {
-            name: form.find('input[name=name]').val(),
-            email: form.find('input[name=message]').val(),
-        };
-
-        var form_data = form.serialize();
-
-        $.ajax({
-            type: 'POST',
-            url: action,
-            data: form_data,
+        $(form).ajaxSubmit({
             dataType: 'json',
             success: function(response) {
+                $('input[name="name"]').removeClass('is-invalid');
+                $('textarea[name="message"]').removeClass('is-invalid');
+                $('input[name="images"]').removeClass('is-invalid');
+                $('.invalid-feedback').hide();
+
                 updateData(data_update, 'item')
-                console.log(response)
+                
+                $('#review-form')[0].reset()
+
+                console.log('success')
+                
             },
             error: function(response) {
-                console.log(response)
+                console.log('error')
+
+                if (response.responseJSON.errors != undefined) {
+                    $('input[name="name"]').removeClass('is-invalid');
+                    $('textarea[name="message"]').removeClass('is-invalid');
+                    $('input[name="images"]').removeClass('is-invalid');
+                    $('.invalid-feedback').hide();
+                    $(response.responseJSON.errors).each(function(){
+                        $.each(this, function(name, value){
+                            console.log(name + ': ' + value)
+                            $('#'+name).addClass('is-invalid').after('<span class="invalid-feedback" role="alert"><strong>'+value+'</strong></span>')
+                        })
+                    })
+                }
+
             }
         })
     })

@@ -14,4 +14,9 @@ class Review extends Model
     {
         return $this->belongsTo(Good::class);
     }
+
+    public function images() 
+    {
+        return $this->hasMany(ReviewImage::class);
+    }
 }

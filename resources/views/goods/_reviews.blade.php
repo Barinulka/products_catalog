@@ -17,7 +17,13 @@
 <div class="row d-flex justify-content-center py-3">
     <div class="col-md-10">
         <div class="card">
-            <form method="POST" action="{{ route('review.store') }}" data-update="{{ route('catalog.view', ['url' => $good->url]) }}" class="p-5" id="review-form">
+            <form method="POST" 
+                action="{{ route('review.store') }}" 
+                data-update="{{ route('catalog.view', ['url' => $good->url]) }}" 
+                class="p-5" 
+                id="review-form"
+                enctype="multipart/form-data"
+            >
                 @csrf
 
                 <input id="good_id" type="hidden" name="good_id" value="{{ $good->id }}" required autocomplete="name" autofocus>
@@ -43,6 +49,20 @@
                         <textarea id="message" type="text" class="form-control @error('message') is-invalid @enderror" name="message" autocomplete="message" autofocus>{{ old('message') }}</textarea>
 
                         @error('message')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="images" class="col-md-4 col-form-label text-md-end">Картинки</label>
+            
+                    <div class="col-md-6">
+                        <input id="images" multiple type="file"  class="form-control @error('images') is-invalid @enderror" name="images[]" value="{{ old('images') }}"  autocomplete="images" autofocus>
+            
+                        @error('images')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
